@@ -1,0 +1,41 @@
+﻿@using Guia4_ADS_CrudCarrera.Utilities
+@model IEnumerable<Guia4_ADS_CrudCarrera.Models.Carrera>
+
+@{
+    ViewBag.Title = "Carreras";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Indice</h2>
+
+<p>
+    @Html.ActionLink("Crear", "Form", new { operacion = Operacion.insertar})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>Acciones</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Form", new { id=item.Id, operacion = Operacion.modificar }) |
+            @Html.ActionLink("Detalles/Ver", "Form", new { id=item.Id, operacion = Operacion.ver }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id, operacion = Operacion.eliminar })
+        </td>
+    </tr>
+}
+
+</table>
